@@ -31,7 +31,9 @@ class Taxameter {
 
     }
 
-    koer(delta_afst) {}
+    koer(delta_afst) {
+        this.afstand+=delta_afst*5;
+    }
 
     beregnPris() {
         if (this.turStartetTidspunkt == undefined) {
