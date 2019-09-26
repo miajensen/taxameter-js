@@ -1,8 +1,3 @@
-/*
- * Denne fil kalder en funktion i filen start.js, der ligger i library-mappen, 
- * og som I ikke skal ændre ved i denne opgave. Til gengæld kunne man forestille 
- * sig at der her blev indsat et
- */
 class RealClock {
     now() {
         return new Date();
@@ -21,12 +16,12 @@ class FakeClock {
     }
 }
 
-class kronePrisStrategy {
+class storKronePrisStrategy {
     calculatePrice(afstand, tidGaaet) {
-        return (8.5 * (afstand)) + (6.25 * tidGaaet + 39);
+        return (12 * (afstand)) + (6.67 * tidGaaet + 69);
 
     }
 }
 
 var clock = new RealClock();
-start(new Taxameter(clock, new kronePrisStrategy()));
+start(new Taxameter(clock, new storKronePrisStrategy()));

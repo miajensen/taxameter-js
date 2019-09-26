@@ -16,13 +16,16 @@
  */
 class Taxameter {
 
-    constructor() {
+    constructor(clock, priceStrategy) {
         this.afstand = 0;
+        this.priceStrategy = priceStrategy;
+        this.calculatePrice = priceStrategy.calculatePrice;
         this.turStartetTidspunkt = undefined;
+        this.clock = clock;
     }
 
     startTur() {
-        this.turStartetTidspunkt = new Date();
+        this.turStartetTidspunkt = this.clock.now();
     }
 
     slutTur() {
@@ -39,7 +42,8 @@ class Taxameter {
         if (this.turStartetTidspunkt == undefined) {
             return 0;
         } else {
-            return (8.5 * (this.afstand)) + (6.25 * (((new Date() - this.turStartetTidspunkt) / 1000) / 60) + 39);
+            var tidGaaet = (((this.clock.now() - this.turStartetTidspunkt) / 1000) / 60);
+            return this.calculatePrice(this.afstand, tidGaaet);
         }
 
     }
